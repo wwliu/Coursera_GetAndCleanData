@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Coursera, Getting and Cleaning Data, Assignment 1</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Coursera, Getting and Cleaning Data, Assignment 1</h1>
+
+<h4>File: ReadMe</h4>
+
+<h4>Date: 24-05-2014</h4>
+
+<h4>Version: 1.0</h4>
+
+<h4>By: Wai-Wah Liu</h4>
+
+<p>This file accompanies the &ldquo;run_analysis.R&rdquo; file that has been created for the first assignment of the &ldquo;getting and cleaning data&rdquo; course. It will explain each step of the R syntax. Some parts are self explanatory and will not be explained. </p>
+
+<h4>Step 1: Merging training and test set</h4>
+
+<p>The parts A,B and C load in the data in the R console. These are subject ID, activity the person performed and the actual data from the test set. Then in part D, a variable is created so that when the test and training sets are merged, it still can be identified which subject belongs to the test set and which to the training set. In part E all three seperate files are merged into one. In parts H through M this process is repeated for the training set. The part O merge both the test set and training set into one final data set.</p>
+
+<h4>Step 2: Extract mean and standard deviation variables</h4>
+
+<p>The actual data contains 561 variables. However not all are needed in this assignment. Only variables measuring the mean or standard deviaton are. The merged data set does not yet contain the variable names. These are stored in a seperate file that is loaded with part A and get attached to the data set. Then part B searches in the 561 variable names for either &ldquo;mean&rdquo; or &ldquo;std&rdquo; and taggs them. Part C keeps all the tagged variables and the &ldquo;subject&rdquo;, &ldquo;label and &quot;activity&rdquo; variable. Now a data frame is created with 10.299 observations and 82 variables.</p>
+
+<h4>Step 3: Descriptive activity names to name the activities</h4>
+
+<p>As of now the activity a person is performing is simply coded as a 1,2,3,4,5 or 6. One cannot know which is which. Part A labels the numbers so that 1 is represented as &ldquo;walking&rdquo;, 2 as &ldquo;walking  upstairs&rdquo;, etc. This variable is the only non-numerical variable (a categorical one) that needs labeling.</p>
+
+<h4>Step 4: Label the variables in the data set</h4>
+
+<p>Almost all variables contain &ldquo;strange&rdquo; characters like &ldquo;(&rdquo;,&ldquo;)&rdquo;, underscores and the like. For variable names this is not recommended. To create descriptive and tidy variable names the following R style guide is used:</p>
+
+<p><a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml</a></p>
+
+<p><strong>What it says about variable names:</strong>
+Don&#39;t use underscores ( _ ) or hyphens ( - ) in identifiers. Identifiers should be named according to the following conventions. The preferred form for variable names is all lower case letters and words separated with dots (variable.name), but variableName is also accepted; function names have initial capital letters and no dots (FunctionName); constants are named like functions but with an initial k. </p>
+
+<ul>
+<li>variable.name is preferred, variableName is accepted</li>
+<li>GOOD: avg.clicks</li>
+<li>OK: avgClicks </li>
+<li>BAD: avg_Clicks </li>
+<li>FunctionName </li>
+<li>GOOD: CalculateAvgClicks </li>
+<li>BAD: calculate_avg_clicks , calculateAvgClicks </li>
+<li>Make function names verbs. </li>
+<li>Exception: When creating a classed object, the function name (constructor) and * class should match (e.g., lm). </li>
+<li>kConstantName </li>
+</ul>
+
+<p>First everything is set to lower case (part A). Then the &ldquo;strange&rdquo; characters are removed and all chunks of the variable name are nicely seperated out. The variable name now looks something like this: &ldquo;t.body.acc.mean.z&rdquo;. The first letter means the variable is measured in the time domain (t) or frequency domain (f). &ldquo;Body&rdquo; or &ldquo;gravity&rdquo; means that they&#39;re either body or gravity signals. &ldquo;Acc&rdquo; or &ldquo;gyro&rdquo; means the signal is from the accelerometer or gyroscope. &ldquo;Jerk&rdquo; is the term for a sudden motion. &ldquo;Mag&rdquo; is magnitude. &ldquo;meanfreq&rdquo; is the mean frequency, std&quot; is standard deviation and &ldquo;x&rdquo;,&ldquo;y&rdquo;, or &ldquo;z&rdquo; stand for the corresponding axis. So one can see relatively clear that &ldquo;t.body.acc.mean.z&rdquo; means &ldquo;the mean body signal of the accelerometer z-axis of the time domain&rdquo;. The parts in the variable names are kept shortened because the variable names would otherwise be really long.</p>
+
+<h4>Step 5: Create tidy data set with averages by subject and activity</h4>
+
+<p>The tidy data set is created with the &ldquo;aggregate&rdquo; function (part A) which enables calculation of the mean for every subject and activity combined. For each subject the mean of all the variables are calculated by every activity. Duplicate columns from the transformation are deleted and columns renamed again (part B). Also due to the transformation the variable &ldquo;type&rdquo; (subject from test or training set) is deleted. Part C adds this back. The final part saves the R object as a csv data file. There are 30 subjects and 6 activities. So this data set contains (30*6) observations on 79 measurement variables, 1 subject ID variable, 1 label variable and 1 type variable.</p>
+
+</body>
+
+</html>
+

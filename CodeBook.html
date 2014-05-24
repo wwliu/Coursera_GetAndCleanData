@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Coursera, Getting and Cleaning Data, Assignment 1</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Coursera, Getting and Cleaning Data, Assignment 1</h1>
+
+<h4>File: CodeBook</h4>
+
+<h4>Date: 24-05-2014</h4>
+
+<h4>Version: 1.0</h4>
+
+<h4>By: Wai-Wah Liu</h4>
+
+<p>This file describes the background of the data and gives a description of the variables of the final tidy data set. </p>
+
+<h2>Human Activity Recognition Using Smartphones Data Set</h2>
+
+<p>The data sets are about the research study of: Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto. Smartlab - Non Linear Complex Systems Laboratory DITEN - UniversitÃ  degli Studi di Genova, Genoa I-16145, Italy (see link). </p>
+
+<p><a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
+
+<p>The idea behind this study is that activities such as walking, sitting, etc. can be predicted by the smartphone signals of the built-in accelerometer and gyroscope. The signals of these features are stored in the tidy data set. The variables included measure the mean or standard deviation on a specific signal. All these signal variables are standardized scores (with mean 0 and standard deviation 1). The variables are:</p>
+
+<h3>subject</h3>
+
+<ul>
+<li>Descr: <strong>ID number of subject</strong></li>
+<li>Type: <strong>numeric</strong></li>
+<li>Min: <strong>1</strong></li>
+<li>Max: <strong>30</strong></li>
+</ul>
+
+<h3>label</h3>
+
+<ul>
+<li>Descr: <strong>Activity subject was performing</strong></li>
+<li>Type: <strong>categorical</strong>
+
+<ul>
+<li>1: <strong>walking</strong></li>
+<li>2: <strong>walking upstairs</strong></li>
+<li>3: <strong>walking downstairs</strong></li>
+<li>4: <strong>sitting</strong></li>
+<li>5: <strong>standing</strong></li>
+<li>6: <strong>laying</strong></li>
+</ul></li>
+</ul>
+
+<h3>type</h3>
+
+<ul>
+<li>Descr: <strong>Subject was part of test set or training set</strong></li>
+<li>Type: <strong>categorical</strong>
+
+<ul>
+<li>1: <strong>test</strong></li>
+<li>2: <strong>training</strong></li>
+</ul></li>
+</ul>
+
+<h3>t.body.acc.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the accelerometer x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the accelerometer y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the accelerometer z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean gravity signal of the accelerometer x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean gravity signal of the accelerometer y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean gravity signal of the accelerometer z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion of body signal of the accelerometer x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion of body signal of the accelerometer y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion of body signal of the accelerometer z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the gyroscope x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the gyroscope y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the gyroscope z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion of body signal of the gyroscope x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion of body signal of the gyroscope y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion of body signal of the gyroscope z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude body signal of the accelerometer of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude gravity signal of the accelerometer of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude jerk motion body signal of the accelerometer of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude body signal of the gyroscope of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude jerk motion body signal of the gyroscope of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the accelerometer x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the accelerometer y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the accelerometer z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.meanfreq.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency body signal of the accelerometer x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.meanfreq.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency body signal of the accelerometer y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.meanfreq.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency body signal of the accelerometer z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion body signal of the accelerometer x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion body signal of the accelerometer y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean jerk motion body signal of the accelerometer z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.meanfreq.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency jerk motion body signal of the accelerometer x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.meanfreq.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency jerk motion body signal of the accelerometer y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.meanfreq.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency jerk motion body signal of the accelerometer z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.mean.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the gyroscope x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.mean.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the gyroscope y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.mean.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean body signal of the gyroscope z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.meanfreq.x</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency body signal of the gyroscope x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.meanfreq.y</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency body signal of the gyroscope y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.meanfreq.z</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency body signal of the gyroscope z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude body signal of the accelerometer of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.mag.meanfreq</h3>
+
+<ul>
+<li>Descr: <strong>the mean fequency magnitude body signal of the accelerometer of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.acc.jerk.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude jerk motion body signal of the accelerometer of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.acc.jerk.mag.meanfreq</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency magnitude jerk motion body signal of the accelerometer of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.gyro.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude body signal of the gyroscope of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.gyro.mag.meanfreq</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency magnitude body signal of the gyroscope of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.gyro.jerk.mag.mean</h3>
+
+<ul>
+<li>Descr: <strong>the mean magnitude jerk motion body signal of the gyroscope of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.gyro.jerk.mag.meanfreq</h3>
+
+<ul>
+<li>Descr: <strong>the mean frequency magnitude jerk motion body signal of the gyroscope of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the accelerometer x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the accelerometer y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the accelerometer z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation gravity signal of the accelerometer x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation gravity signal of the accelerometer y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation gravity signal of the accelerometer z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion of body signal of the accelerometer x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion of body signal of the accelerometer y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion of body signal of the accelerometer z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the gyroscope x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the gyroscope y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the gyroscope z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion of body signal of the gyroscope x-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion of body signal of the gyroscope y-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion of body signal of the gyroscope z-axis of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude body signal of the accelerometer of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.gravity.acc.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude gravity signal of the accelerometer of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.acc.jerk.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude jerk motion body signal of the accelerometer of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude body signal of the gyroscope of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>t.body.gyro.jerk.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude jerk motion body signal of the gyroscope of the time domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the accelerometer x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the accelerometer y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the accelerometer z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion body signal of the accelerometer x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion body signal of the accelerometer y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.jerk.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation jerk motion body signal of the accelerometer z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.std.x</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the gyroscope x-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.std.y</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the gyroscope y-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.gyro.std.z</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation body signal of the gyroscope z-axis of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.acc.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude body signal of the accelerometer of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.acc.jerk.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude jerk motion body signal of the accelerometer of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.gyro.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude body signal of the gyroscope of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<h3>f.body.body.gyro.jerk.mag.std</h3>
+
+<ul>
+<li>Descr: <strong>the standard deviation magnitude jerk motion body signal of the gyroscope of the frequency domain</strong></li>
+<li>Type: <strong>numeric</strong></li>
+</ul>
+
+<p><strong>citation:</strong></p>
+
+<ul>
+<li>Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012</li>
+</ul>
+
+</body>
+
+</html>
+
